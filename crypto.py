@@ -168,7 +168,20 @@ class Cryptographie:
         dico_traduction=self.mono.correspond_occurrences(dico_occurrence)
         claire=self.traduction(text_lettre,dico_traduction)
         print(claire)
+class Traitement_texte:
+    def __init__(self) -> None:
+        self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.ponctuation=",;:!?./%ùµ*^$¨£+°=)àç_è-()"
+    
+    def clean_accent(texte):
+        liste_e=["é","è","ê","ë"]
+        liste_a=["à","â","ä","ã"]
+        liste_o=["ô","ö","õ","ò"]
 
+        pass
+"""
+
+"""
     
 if __name__=="__main__":
     # teste=Crypto_bigrames()
