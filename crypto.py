@@ -171,13 +171,35 @@ class Cryptographie:
 class Traitement_texte:
     def __init__(self) -> None:
         self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        self.ponctuation=",;:!?./%ùµ*^$¨£+°=)àç_è-()"
+        # self.ponctuation=",;:!?./%ùµ*^$¨£+°=)àç_è-()"
     
     def clean_accent(texte):
         liste_e=["é","è","ê","ë"]
         liste_a=["à","â","ä","ã"]
         liste_o=["ô","ö","õ","ò"]
-
+        liste_i=["ï","î","ì"]
+        liste_u=["û","ü","ù"]
+        # "ÿ" "ç" 
+        liste_texte=list(texte)
+        for i in range(len(liste_texte)):
+            if liste_texte[i] in liste_e:
+                liste_texte[i]="e"
+            elif liste_texte[i] in liste_a:
+                liste_texte[i]="a"
+            elif liste_texte[i] in liste_i:
+                liste_texte[i]="i"
+            elif liste_texte[i] in liste_o:
+                liste_texte[i]="o"
+            elif liste_texte[i] in liste_u:
+                liste_texte="u"
+            elif liste_texte[i]=="ÿ":
+                liste_texte[i]="y"
+            elif liste_texte[i]=="ç":
+                liste_texte[i]="c"
+        texte_clean="".join(liste_texte)
+        return texte_clean
+    
+        
         pass
 """
 
