@@ -168,19 +168,30 @@ class Cryptographie:
         dico_traduction=self.mono.correspond_occurrences(dico_occurrence)
         claire=self.traduction(text_lettre,dico_traduction)
         print(claire)
+
+
 class Traitement_texte:
     def __init__(self) -> None:
         self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         # self.ponctuation=",;:!?./%ùµ*^$¨£+°=)àç_è-()"
     
-    def clean_accent(texte):
+    def clean_accent(texte:str)->str:
+        """
+        fonction qui retire tous les accents d'un texte
+        """
+
+        # creation des liste pour les lettre a plusieurs accents
+
         liste_e=["é","è","ê","ë"]
         liste_a=["à","â","ä","ã"]
         liste_o=["ô","ö","õ","ò"]
         liste_i=["ï","î","ì"]
         liste_u=["û","ü","ù"]
-        # "ÿ" "ç" 
+
+        # on met le texte en forme de liste pour pouvoir traiter
         liste_texte=list(texte)
+
+        # traitement du texte et suppression des accents
         for i in range(len(liste_texte)):
             if liste_texte[i] in liste_e:
                 liste_texte[i]="e"
@@ -191,12 +202,16 @@ class Traitement_texte:
             elif liste_texte[i] in liste_o:
                 liste_texte[i]="o"
             elif liste_texte[i] in liste_u:
-                liste_texte="u"
+                liste_texte[i]="u"
             elif liste_texte[i]=="ÿ":
                 liste_texte[i]="y"
             elif liste_texte[i]=="ç":
                 liste_texte[i]="c"
+
+        # on reforme le texte 
         texte_clean="".join(liste_texte)
+
+        # on retourne le texte
         return texte_clean
     
         
@@ -210,5 +225,5 @@ if __name__=="__main__":
     # text=Cryptographie().nett_normal_mode(str(input("votre message")))
     # teste.occurance_bigrame(text)
 
-    test=Cryptographie()
-    test.normal_mode()
+    test=Traitement_texte
+    print(test.clean_accent(input("message : ")))
