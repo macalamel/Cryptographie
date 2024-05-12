@@ -104,13 +104,13 @@ class Crypto_bigrames:
         dico_occurrences_bigrame={}
         for i in range(0,len(text)-1):
             bigrame=text[i:i+2]
-            if bigrame in dico_occurrences_bigrame.keys():
-                dico_occurrences_bigrame[bigrame]+=((1/len(text))*100)
-            else:
-                dico_occurrences_bigrame[bigrame]=((1/len(text))*100)
+            if " " not in bigrame:
+                if bigrame in dico_occurrences_bigrame.keys():
+                    dico_occurrences_bigrame[bigrame]+=((1/len(text))*100)
+                else:
+                    dico_occurrences_bigrame[bigrame]=((1/len(text))*100)
         for k,v in dico_occurrences_bigrame.items():
             print(k,":",v)
-        print(dico_occurrences_bigrame["ES"])
 
     
 
@@ -172,10 +172,10 @@ class Cryptographie:
 
 class Traitement_texte:
     def __init__(self) -> None:
-        self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
         # self.ponctuation=",;:!?./%ùµ*^$¨£+°=)àç_è-()"
     
-    def clean_accent(texte:str)->str:
+    def clean_accent(self,texte:str)->str:
         """
         fonction qui retire tous les accents d'un texte
         """
@@ -214,16 +214,24 @@ class Traitement_texte:
         # on retourne le texte
         return texte_clean
     
-        
-        pass
-"""
+    def clean_alpha(self,texte:str)->str:
+        liste_texte=[i for i in texte.upper() if i in self.alpha]
+        return "".join(liste_texte)
 
-"""
+    def run(self,texte:str)->str:
+        print(type(texte))
+        texte_sans_accents=self.clean_accent(texte)
+        texte_clean=self.clean_alpha(texte_sans_accents)
+        return texte_clean
+
     
 if __name__=="__main__":
     # teste=Crypto_bigrames()
     # text=Cryptographie().nett_normal_mode(str(input("votre message")))
     # teste.occurance_bigrame(text)
 
-    test=Traitement_texte
-    print(test.clean_accent(input("message : ")))
+    # test=Traitement_texte()
+    # print(test.run(input("message : ")))
+
+    test=Crypto_bigrames()
+    test.occurance_bigrame(Traitement_texte().run(input("message : ")))
