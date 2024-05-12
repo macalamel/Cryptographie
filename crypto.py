@@ -233,5 +233,5 @@ if __name__=="__main__":
     # test=Traitement_texte()
     # print(test.run(input("message : ")))
 
-    test=Crypto_bigrames()
-    test.occurance_bigrame(Traitement_texte().run(input("message : ")))
+    test=Crypto_mono_occurrence()
+    test.occurrences(Traitement_texte().run(input("message : ")))
