@@ -120,6 +120,14 @@ class Cryptographie:
         self.alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         self.mono=Crypto_mono_occurrence()
 
+    def brut_decalage(self,texte):
+        
+        for i in range(len(self.alpha)):
+            trad=""
+            for j in range(len(texte)):
+                trad+=self.alpha[(i+self.alpha.index(texte[j]))%25]
+            print(trad)
+
     def traduction(self,text:list,dico:dict)->str:
         result=""
         for i in text :
@@ -233,5 +241,9 @@ if __name__=="__main__":
     # test=Traitement_texte()
     # print(test.run(input("message : ")))
 
-    test=Crypto_mono_occurrence()
-    test.occurrences(Traitement_texte().run(input("message : ")))
+    # test=Crypto_mono_occurrence()
+    # test.occurrences(Traitement_texte().run(input("message : ")))
+    
+    
+    test=Cryptographie()
+    test.brut_decalage(input("message : "))
